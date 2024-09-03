@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassan's Geospatial Data App</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef; /* Light gray background color */
+            color: #212529; /* Dark text color for readability */
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #343a40; /* Dark background for header */
+            color: #f8f9fa; /* Light text color */
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            height: 60px; /* Increased height for header */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+        }
+        .sidebar {
+            width: 250px;
+            position: fixed;
+            top: 60px; /* Height of the header */
+            left: 0;
+            bottom: 60px; /* Height of the footer */
+            background-color: #495057; /* Slightly lighter than header */
+            overflow-x: hidden;
+            padding-top: 20px;
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+        }
+        .sidebar a {
+            padding: 10px 15px 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #f8f9fa; /* Light text color */
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar a:hover {
+            background-color: #6c757d; /* Even lighter on hover */
+            color: #ffffff; /* Change text color on hover */
+        }
+        .sidebar a.active {
+            background-color: #007bff; /* Highlight active link */
+            color: #ffffff; /* Change text color on hover */
+        }
+        .main {
+            margin-left: 250px; /* Same as the width of the sidebar */
+            padding: 20px;
+            margin-top: 60px; /* Height of the header */
+            margin-bottom: 60px; /* Height of the footer */
+        }
+        .main h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #343a40; /* Dark text color */
+            text-align: center; /* Center align heading */
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: center; /* Center align form content */
+        }
+        .form-control-file {
+            display: inline-block;
+            width: auto; /* Adjust width to fit the content */
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background-color: #ffffff; /* White background for input */
+            margin-right: 10px; /* Space between file input and button */
+        }
+        .btn-primary {
+            border-radius: 4px;
+            background-color: #007bff; /* Primary button color */
+            border-color: #007bff; /* Primary button border color */
+            display: inline-block;
+            vertical-align: middle; /* Align button with file input */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker button color on hover */
+            border-color: #004085; /* Darker button border color on hover */
+        }
+        .btn-reset {
+            border-radius: 4px;
+            background-color: #ffc107; /* Warning button color */
+            border-color: #ffc107; /* Warning button border color */
+            display: block;
+            margin: 20px auto 0; /* Centered and spaced from other elements */
+        }
+        .btn-reset:hover {
+            background-color: #e0a800; /* Darker button color on hover */
+            border-color: #d39e00; /* Darker button border color on hover */
+        }
+        #map {
+            height: 500px;
+            margin-top: 20px;
+            border: 2px solid #ced4da; /* Light border around map */
+            border-radius: 4px; /* Rounded corners for map */
+        }
+        .alert {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center; /* Center align text in alerts */
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #343a40; /* Dark background for footer */
+            color: #f8f9fa; /* Light text color */
+            text-align: center;
+            padding: 15px 0;
+            height: 60px; /* Increased height for footer */
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+        }
+        #prediction {
+            background-color: #ffffff; /* White background for prediction */
+            border: 1px solid #ced4da; /* Light border */
+            border-radius: 4px; /* Rounded corners */
+            padding: 15px;
+            max-width: 600px; /* Maximum width for better readability */
+            margin: 20px auto; /* Center horizontally with margin */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+        }
+        #predictionText {
+            color: #28a745; /* Green color for text */
+            font-size: 1.5rem; /* Larger text size */
+            font-weight: bold; /* Bold text */
+            margin: 0; /* Remove default margin */
+        }
+        #uploadedImage {
+            text-align: center; /* Center the uploaded image and text */
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            border-width: 0.3em;
+            color: #007bff; /* Primary color for the spinner */
+        }
+        .spinner-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .icon-container a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .icon-container a:hover {
+            transform: scale(1.1); /* Slightly enlarge on hover */
+            color: #007bff; /* Change color on hover */
+        }
+        .icon-container i {
+            font-size: 6rem; /* Make icons much bigger */
+            margin-bottom: 10px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .icon-container span {
+            font-size: 1.2rem; /* Make text look better with styling */
+            font-weight: bold;
+            color: #343a40; /* Dark text color */
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h3>Hassan's Geospatial Data App</h3>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" id="homeLink"><i class="fas fa-home"></i> Home</a>
+        <a href="#" id="visualizeDataLink"><i class="fas fa-chart-bar"></i> Visualize Data</a>
+        <a href="#" id="predictLandCoverLink"><i class="fas fa-map"></i> Predict Land Cover</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main" id="mainContent">
+        <!-- Content will be dynamically loaded here -->
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Geospatial Data App. Developed by Hassan Raza Bukhari.</p>
+    </div>
+    
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Display home content on load
+            loadHomeContent();
+
+            // Handler for Home
+            $('#homeLink').click(function() {
+                loadHomeContent();
+            });
+
+            // Handler for Visualize Geospatial Data
+            $('#visualizeDataLink, #homeVisualizeData').click(function() {
+                visualizeData();
+            });
+    
+            // Handler for Predict Land Cover
+            $('#predictLandCoverLink, #homePredictLandCover').click(function() {
+                predictLandCover();
+            });
+
+            function loadHomeContent() {
+                $('#mainContent').html(`
+                    <h1>Welcome to Hassan's Geospatial Data App</h1>
+                    <div class="icon-container">
+                        <a href="#" id="homeVisualizeData"><i class="fas fa-chart-bar" style="color: #007bff;"></i><span>Visualize Data</span></a>
+                        <a href="#" id="homePredictLandCover"><i class="fas fa-map" style="color: #28a745;"></i><span>Predict Land Cover</span></a>
+                    </div>
+                `);
+
+                // Re-attach click handlers for home page icons
+                $('#homeVisualizeData').click(function() {
+                    visualizeData();
+                });
+
+                $('#homePredictLandCover').click(function() {
+                    predictLandCover();
+                });
+
+                // Highlight the active link
+                $('.sidebar a').removeClass('active');
+                $('#homeLink').addClass('active');
+            }
+
+            function visualizeData() {
+                $('#mainContent').html(`
+                    <h1>Upload and Visualize Geospatial Data</h1>
+                    <form id="uploadForm" class="mt-4">
+                        <div class="form-group">
+                            <input type="file" id="fileInput" name="file" class="form-control-file" required>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </form>
+                    <div id="map"></div>
+                    <button id="resetMap" class="btn btn-reset" style="display:none;">Reset Map</button>
+                    <div id="message" class="alert" style="display:none;"></div>
+                    <div id="loadingSpinner" class="spinner-container">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                `);
+                
+                var map = L.map('map').setView([0, 0], 2);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+    
+                var geojsonLayer;
+    
+                $('#uploadForm').on('submit', function(event) {
+                    event.preventDefault();
+                    var formData = new FormData();
+                    formData.append('file', $('#fileInput')[0].files[0]);
+
+                    $.ajax({
+                        url: '/upload',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            if (response.error) {
+                                $('#message').removeClass('alert-success').addClass('alert-danger').text(response.error).show();
+                            } else {
+                                var geojsonData = response.geojson;
+                                // Clear previous layer if exists
+                                if (geojsonLayer) {
+                                    map.removeLayer(geojsonLayer);
+                                }
+                                geojsonLayer = L.geoJson(JSON.parse(geojsonData)).addTo(map);
+                                map.fitBounds(geojsonLayer.getBounds());
+                                $('#message').removeClass('alert-danger').addClass('alert-success').text('File uploaded and visualized successfully.').show();
+                                $('#resetMap').show(); // Show reset button
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            $('#message').removeClass('alert-success').addClass('alert-danger').text('File upload failed: ' + error).show();
+                        }
+                    });
+                });
+    
+                $('#resetMap').on('click', function() {
+                    map.setView([0, 0], 2);
+                    if (geojsonLayer) {
+                        geojsonLayer.clearLayers();
+                    }
+                    $('#message').hide();
+                    $(this).hide();
+                });
+
+                // Highlight the active link
+                $('.sidebar a').removeClass('active');
+                $('#visualizeDataLink').addClass('active');
+            }
+
+            function predictLandCover() {
+                $('#mainContent').html(`
+                    <h1>Predict Land Cover</h1>
+                    <form id="predictForm" class="mt-4" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="file" id="imageInput" name="image" class="form-control-file" required>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </form>
+                    <div id="uploadedImage" style="display:none;">
+                        <img id="imageDisplay" src="" alt="Uploaded Image" class="img-fluid" style="max-width: 100%; border: 2px solid #ced4da; border-radius: 4px;"/>
+                        <div id="prediction" style="display:none;">
+                            <p id="predictionText"></p>
+                        </div>
+                    </div>
+                    <div id="loadingSpinner" class="spinner-container">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                `);
+    
+                $('#predictForm').on('submit', function(event) {
+                    event.preventDefault();
+                    var formData = new FormData(this);
+                    $('#loadingSpinner').show(); // Show spinner
+    
+                    $.ajax({
+                        url: '/predict_image',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            $('#loadingSpinner').hide(); // Hide spinner
+                            $('#uploadedImage').show();
+                            $('#imageDisplay').attr('src', URL.createObjectURL($('#imageInput')[0].files[0]));
+                            $('#predictionText').text(response.prediction);
+                            $('#prediction').show();
+                        },
+                        error: function() {
+                            $('#loadingSpinner').hide(); // Hide spinner
+                            $('#prediction').hide();
+                            alert('An error occurred');
+                        }
+                    });
+                });
+
+                // Highlight the active link
+                $('.sidebar a').removeClass('active');
+                $('#predictLandCoverLink').addClass('active');
+            }
+        });
+    </script>
+</body>
+</html>
