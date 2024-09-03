@@ -31,9 +31,10 @@
   <a href="/Machine%20Learning%20-%20Training%20and%20Testing/ML_Training_and_Testing_EuroSAT_ResNet50.ipynb">
     <img src="https://img.shields.io/badge/Jupyter%20Notebook-Model%20Training%20%26%20Performance%20Testing-ff69b4?style=for-the-badge&logo=jupyter" alt="Model Training & Performance Testing">
   </a>
-  <a href="/Machine%20Learning%20-%20Training%20and%20Testing/Testing_Model_Single_Image">
+<a href="/Machine%20Learning%20-%20Training%20and%20Testing/Testing_Model_Single_Image">
     <img src="https://img.shields.io/badge/Jupyter%20Notebook-Testing%20on%20Single%20Images-ff69b4?style=for-the-badge&logo=jupyter" alt="Testing on Single Images">
-  </a>
+</a>
+
 </p>
 
 
