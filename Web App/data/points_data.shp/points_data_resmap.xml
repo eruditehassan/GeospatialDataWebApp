@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:citoterms="http://purl.org/spar/cito/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+   xmlns:ore="http://www.openarchives.org/ore/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs1="http://www.w3.org/2001/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation">
+    <ore:aggregates rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.cpg"/>
+    <citoterms:isDocumentedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_meta.xml</citoterms:isDocumentedBy>
+    <ore:aggregates rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.dbf"/>
+    <ore:aggregates rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.shp"/>
+    <ore:aggregates rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.sbx"/>
+    <dcterms:type rdf:resource="http://www.hydroshare.org/terms/GeographicFeatureAggregation"/>
+    <dc:title>points_data</dc:title>
+    <ore:aggregates rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.sbn"/>
+    <ore:aggregates rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_meta.xml"/>
+        <ore:aggregates rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.prj"/>
+    <rdf:type rdf:resource="http://www.openarchives.org/ore/terms/Aggregation"/>
+    <ore:aggregates rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.shx"/>
+    <ore:aggregates rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.shp.xml"/>
+    <ore:isDescribedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml</ore:isDescribedBy>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.openarchives.org/ore/terms/Aggregation">
+    <rdfs1:isDefinedBy>http://www.openarchives.org/ore/terms/</rdfs1:isDefinedBy>
+    <rdfs1:label>Aggregation</rdfs1:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.openarchives.org/ore/terms/ResourceMap">
+    <rdfs1:label>ResourceMap</rdfs1:label>
+    <rdfs1:isDefinedBy>http://www.openarchives.org/ore/terms/</rdfs1:isDefinedBy>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_meta.xml">
+    <ore:isAggregatedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</ore:isAggregatedBy>
+    <citoterms:documents>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</citoterms:documents>
+    <dc:format>application/rdf+xml</dc:format>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml">
+    <ore:describes rdf:resource="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation"/>
+    <dcterms:creator rdf:resource="http://foresite-toolkit.googlecode.com/#pythonAgent"/>
+    <rdf:type rdf:resource="http://www.openarchives.org/ore/terms/ResourceMap"/>
+    <dcterms:modified>2023-11-28T14:39:25Z</dcterms:modified>
+    <dc:format>application/rdf+xml</dc:format>
+    <dcterms:created>2023-11-28T14:39:25Z</dcterms:created>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.cpg">
+    <dc:format>application/cpg</dc:format>
+    <ore:isAggregatedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</ore:isAggregatedBy>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.shx">
+    <ore:isAggregatedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</ore:isAggregatedBy>
+    <dc:format>application/x-qgis</dc:format>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://foresite-toolkit.googlecode.com/#pythonAgent">
+    <foaf:name>Foresite Toolkit (Python)</foaf:name>
+    <foaf:mbox>foresite@googlegroups.com</foaf:mbox>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.sbn">
+    <dc:format>application/sbn</dc:format>
+    <ore:isAggregatedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</ore:isAggregatedBy>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.sbx">
+    <dc:format>application/sbx</dc:format>
+    <ore:isAggregatedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</ore:isAggregatedBy>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.prj">
+    <dc:format>application/prj</dc:format>
+    <ore:isAggregatedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</ore:isAggregatedBy>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.shp">
+    <ore:isAggregatedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</ore:isAggregatedBy>
+    <dc:format>application/x-qgis</dc:format>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.dbf">
+    <ore:isAggregatedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</ore:isAggregatedBy>
+    <dc:format>application/dbf</dc:format>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data.shp.xml">
+    <ore:isAggregatedBy>http://www.hydroshare.org/resource/8f221ac2b03d4a5d8e60a01e66e776b0/data/contents/points_data_resmap.xml#aggregation</ore:isAggregatedBy>
+    <dc:format>application/xml</dc:format>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.hydroshare.org/terms/GeographicFeatureAggregation">
+    <rdfs1:isDefinedBy>http://www.hydroshare.org/terms</rdfs1:isDefinedBy>
+    <rdfs1:label>Geographic Feature Aggregation</rdfs1:label>
+  </rdf:Description>
+</rdf:RDF>
