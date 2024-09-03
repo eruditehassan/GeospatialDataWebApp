@@ -38,9 +38,9 @@
 </p>
 
 
-- [**Model Training & Performance Testing.ipynb**](/Machine%20Learning%20-%20Training%20and%20Testing/ML_Training_and_Testing_EuroSAT_ResNet50.ipynb): This Jupyter notebook goes into detail of training the ResNet-50 model on the EUROSAT RGB dataset.
+- [**Model Training & Performance Testing**](/Machine%20Learning%20-%20Training%20and%20Testing/ML_Training_and_Testing_EuroSAT_ResNet50.ipynb): This Jupyter notebook goes into detail of training the ResNet-50 model on the EUROSAT RGB dataset.
 
-- [**Validation on Publicly Available Datasets.ipynb**](/Machine%20Learning%20-%20Training%20and%20Testing/Testing_Model_Single_Image): This Jupyter notebook explores the usage of the model on single images, as this will be the real-life use case when it is embedded in the web application.
+- [**Testing on Single Images**](/Machine%20Learning%20-%20Training%20and%20Testing/Testing_Model_Single_Image): This Jupyter notebook explores the usage of the model on single images, as this will be the real-life use case when it is embedded in the web application.
 
 
 ### Web App
