@@ -31,7 +31,7 @@
   <a href="/Machine%20Learning%20-%20Training%20and%20Testing/ML_Training_and_Testing_EuroSAT_ResNet50.ipynb">
     <img src="https://img.shields.io/badge/Jupyter%20Notebook-Model%20Training%20%26%20Performance%20Testing-ff69b4?style=for-the-badge&logo=jupyter" alt="Model Training & Performance Testing">
   </a>
-<a href="/Machine%20Learning%20-%20Training%20and%20Testing/Testing_Model_Single_Image">
+<a href="/Machine%20Learning%20-%20Training%20and%20Testing/Testing_Model_Single_Image.ipynb">
     <img src="https://img.shields.io/badge/Jupyter%20Notebook-Testing%20on%20Single%20Images-ff69b4?style=for-the-badge&logo=jupyter" alt="Testing on Single Images">
 </a>
 
@@ -40,7 +40,7 @@
 
 - [**Model Training & Performance Testing**](/Machine%20Learning%20-%20Training%20and%20Testing/ML_Training_and_Testing_EuroSAT_ResNet50.ipynb): This Jupyter notebook goes into detail of training the ResNet-50 model on the EUROSAT RGB dataset.
 
-- [**Testing on Single Images**](/Machine%20Learning%20-%20Training%20and%20Testing/Testing_Model_Single_Image): This Jupyter notebook explores the usage of the model on single images, as this will be the real-life use case when it is embedded in the web application.
+- [**Testing on Single Images**](/Machine%20Learning%20-%20Training%20and%20Testing/Testing_Model_Single_Image.ipynb): This Jupyter notebook explores the usage of the model on single images, as this will be the real-life use case when it is embedded in the web application.
 
 
 ### Web App
