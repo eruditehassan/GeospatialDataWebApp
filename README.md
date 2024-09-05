@@ -50,14 +50,14 @@ This directory contains the code for web application. The application is deploye
 
 # Documentation
 
-[![Web Application](https://img.shields.io/badge/Web%20Application-blue?style=for-the-badge)](##web-application-documentation)
-[![Artificial Intelligence](https://img.shields.io/badge/Artificial%20Intelligence-green?style=for-the-badge)](##artificial-intelligence-component-documentation)
-[![AWS Integration](https://img.shields.io/badge/AWS%20Integration-orange?style=for-the-badge)](##aws-integration-documentation)
+[![Web Application](https://img.shields.io/badge/Web%20Application-blue?style=for-the-badge)](#web-application-documentation)
+[![Artificial Intelligence](https://img.shields.io/badge/Artificial%20Intelligence-green?style=for-the-badge)](#artificial-intelligence-component-documentation)
+[![AWS Integration](https://img.shields.io/badge/AWS%20Integration-orange?style=for-the-badge)](#aws-integration-documentation)
 
 This documentation covers the following sections:
-- **[Web Application](##web-application-documentation)**
-- **[Artificial Intelligence](##artificial-intelligence-component-documentation)**
-- **[AWS Integration](##aws-integration-documentation)**
+- **[Web Application](#web-application-documentation)**
+- **[Artificial Intelligence](#artificial-intelligence-component-documentation)**
+- **[AWS Integration](#aws-integration-documentation)**
 
 
 ## Web Application Documentation
