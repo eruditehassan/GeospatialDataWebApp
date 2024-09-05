@@ -259,8 +259,6 @@ The following table summarizes the performance metrics of the ResNet50 model on 
 
 ---
 
-This documentation provides a comprehensive overview of the AI module, including data preparation, model training, and evaluation. For further details or questions, please refer to the specific sections or contact the maintainer.
-
 ## AWS Integration Documentation
 
 This section documents the integration of a Flask application deployed on an AWS EC2 instance, utilizing AWS Lambda for efficient processing of land cover predictions from satellite imagery.
