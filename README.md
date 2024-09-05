@@ -251,6 +251,127 @@ The following table summarizes the performance metrics of the ResNet50 model on 
 
 This documentation provides a comprehensive overview of the AI module, including data preparation, model training, and evaluation. For further details or questions, please refer to the specific sections or contact the maintainer.
 
+## AWS Integration Documentation
+
+This section documents the integration of a Flask application deployed on an AWS EC2 instance, utilizing AWS Lambda for efficient processing of land cover predictions from satellite imagery.
+
+### Architecture Overview
+
+The Flask app is hosted on an EC2 instance, while resource-intensive tasks like image processing and land cover prediction are offloaded to an AWS Lambda function. The system supports various geospatial formats and was tested thoroughly for scalability and performance.
+
+---
+
+### Table of Contents
+- [EC2 Instance Setup](#ec2-instance-setup)
+- [Flask Application Deployment](#flask-application-deployment)
+- [AWS Lambda Setup for Model Processing](#aws-lambda-setup-for-model-processing)
+- [Data Visualization](#data-visualization)
+- [Testing and Verification](#testing-and-verification)
+- [Conclusion](#conclusion)
+- [License](#license)
+
+---
+
+### EC2 Instance Setup
+
+1. **Instance Configuration**:
+   - Created an EC2 instance with Ubuntu for hosting the Flask application.
+   - Increased EC2 storage to **15 GB** using the following commands:
+     ```bash
+     sudo growpart /dev/nvme0n1 1
+     sudo resize2fs /dev/nvme0n1p1
+     ```
+   - Created a **5 GB swap file** to manage memory more efficiently:
+     ```bash
+     sudo dd if=/dev/zero of=/swapfile bs=1M count=5120
+     sudo chmod 600 /swapfile
+     sudo mkswap /swapfile
+     sudo swapon /swapfile
+     ```
+   - Added swap file entry to `/etc/fstab` to ensure it persists across reboots:
+     ```bash
+     /swapfile swap swap defaults 0 0
+     ```
+
+---
+
+### Flask Application Deployment
+
+1. **Web Server Setup**:
+   - Deployed the Flask app using **NGINX** and **Gunicorn**.
+   - Gunicorn is responsible for handling requests to the Flask app, while NGINX serves as a reverse proxy to handle incoming HTTP traffic.
+   - Configured NGINX to serve the app on **port 80** for public access, allowing HTTP access via the public IP or domain.
+
+2. **NGINX Configuration**:
+   - Configuration for NGINX to proxy requests to Gunicorn:
+     ```nginx
+     server {
+         listen 80;
+         server_name your_public_ip;
+
+         location / {
+             proxy_pass http://127.0.0.1:5000;
+             proxy_set_header Host $host;
+             proxy_set_header X-Real-IP $remote_addr;
+             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+             proxy_set_header X-Forwarded-Proto $scheme;
+         }
+     }
+     ```
+
+3. **Gunicorn Configuration**:
+   - Start the Flask application using Gunicorn with:
+     ```bash
+     gunicorn --workers 3 --timeout 120 --bind 0.0.0.0:5000 app:app
+     ```
+   - The application is served on port 5000 and proxied through NGINX. It can be accessed on port 80, by simply sending an HTTP request.
+
+---
+
+### AWS Lambda Setup for Model Processing
+
+1. **Lambda Function**:
+   - Created a Lambda function to perform **land cover prediction** using machine learning models.
+   - Created a **Lambda Layer** containing **NumPy**, **TensorFlow**, and **Keras**, ensuring the model dependencies are efficiently managed:
+     - Packaged the dependencies in a `.zip` file and uploaded them to an S3 bucket.
+     - Attached the Lambda Layer to the function for use in predictions.
+   
+2. **S3 Integration**:
+   - Uploaded large datasets and models to an **S3 bucket** for use in Lambda.
+   - Lambda pulls data from S3, performs processing, and returns results to the Flask application.
+
+3. **EC2-Lambda Integration**:
+   - The EC2 instance communicates with the Lambda function using AWS SDK or HTTP requests.
+   - Requests from the Flask app trigger the Lambda function to process satellite imagery data, offloading heavy computations to Lambda and improving EC2 efficiency.
+
+---
+
+### Data Visualization
+
+The application supports the following geospatial file formats for visualization and processing:
+- **JSON**
+- **GeoJSON**
+- **Shape Files**
+- **GML**
+- **KML**
+- **TopoJSON**
+
+These formats allow the app to process and visualize a variety of geospatial datasets, ensuring compatibility with different data types and sources.
+
+---
+
+### Testing and Verification
+
+1. **Model Testing**:
+   - The application was rigorously tested using a wide range of satellite imagery categories.
+   - Ensured that predictions were accurate for multiple land cover types.
+
+2. **Visualization Testing**:
+   - Successfully visualized results using the supported geospatial file formats.
+   - Tested the app with different file sizes and formats, confirming that it handled them without performance degradation.
+
+---
+
 
 
 ### Contributing
