@@ -50,7 +50,17 @@ This directory contains the code for web application. The application is deploye
 
 # Documentation
 
-## Web Application
+[![Web Application](https://img.shields.io/badge/Web%20Application-blue?style=for-the-badge)](##web-application-documentation)
+[![Artificial Intelligence](https://img.shields.io/badge/Artificial%20Intelligence-green?style=for-the-badge)](##artificial-intelligence-component-documentation)
+[![AWS Integration](https://img.shields.io/badge/AWS%20Integration-orange?style=for-the-badge)](##aws-integration-documentation)
+
+This documentation covers the following sections:
+- **[Web Application](##web-application-documentation)**
+- **[Artificial Intelligence](##artificial-intelligence-component-documentation)**
+- **[AWS Integration](##aws-integration-documentation)**
+
+
+## Web Application Documentation
 
 ### Features
 
@@ -168,7 +178,7 @@ Displays the home page with options to visualize data and predict land cover.
 
 See `templates/index.html` for the HTML structure and `static/styles.css` for custom styles.
 
-## Artificial Intelligence
+## Artificial Intelligence Component Documentation
 
 This AI part of this project includes the process of training and evaluating a ResNet50 model on the EUROSAT dataset. It includes data preprocessing, data augmentation, model training, and performance evaluation. The following sections detail each step involved in the process.
 
