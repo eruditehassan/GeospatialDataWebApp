@@ -261,17 +261,6 @@ The Flask app is hosted on an EC2 instance, while resource-intensive tasks like 
 
 ---
 
-### Table of Contents
-- [EC2 Instance Setup](#ec2-instance-setup)
-- [Flask Application Deployment](#flask-application-deployment)
-- [AWS Lambda Setup for Model Processing](#aws-lambda-setup-for-model-processing)
-- [Data Visualization](#data-visualization)
-- [Testing and Verification](#testing-and-verification)
-- [Conclusion](#conclusion)
-- [License](#license)
-
----
-
 ### EC2 Instance Setup
 
 1. **Instance Configuration**:
